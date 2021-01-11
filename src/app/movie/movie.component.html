@@ -1,0 +1,22 @@
+
+<button class="back" (click)=addMovie()>    Add New Movie</button>
+
+
+<div class="movie">
+<ul *ngFor="let movie of movies" >
+    <li  (click)=moviedetail(movie)>
+      <a > 
+        <img [src]="movie.image"/>
+      </a>
+     
+      
+    </li>
+    <h3>{{movie.name}}</h3>
+    <li><a class="cart btn" (click)=moviedelete(movie)>Delete</a>
+        <a  class="buynow btn" (click)=moviedetail(movie)>Details</a>
+    </li>
+    
+
+  </ul>
+</div>
+

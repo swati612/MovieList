@@ -1,0 +1,222 @@
+<div class="container">
+
+  <button class="back" (click)=back()>    Back</button>
+  <h2 class="mt-4">Movie Details</h2>
+  
+
+<div class="row">
+    <div class="col-12">
+      <form
+        (ngSubmit)="onSubmit()"
+        [formGroup]="createMovieForm"
+        class="form_main"
+      >
+      
+        <div class="input_feild pt-2">
+          <div class="category_col">
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Movie Name <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    name="name"
+                    placeholder="Name"
+                  />
+                  <span
+                    *ngIf="
+                    createMovieForm.get('name').errors &&
+                      (createMovieForm.get('name').touched ||
+                      createMovieForm.get('name').dirty)
+                    "
+                  >
+                    <span
+                      *ngIf="createMovieForm.get('name').errors.required"
+                      class="error"
+                      >Movie Name is required</span
+                    >
+                    <span
+                      *ngIf="createMovieForm.get('name').errors.pattern"
+                      class="error"
+                      >only alphabets are allowed</span
+                    >
+                    
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Movie Image <span class="required">*</span></label>
+                  <input
+                  type="file"
+                  accept="image/*"
+                    class="form-control"
+                    formControlName="image"
+                    name="image"
+                    placeholder="image"
+                  />
+                  <span
+                    *ngIf="
+                    createMovieForm.get('image').errors &&
+                      (createMovieForm.get('image').touched ||
+                      createMovieForm.get('image').dirty)
+                    "
+                  >
+                    <span
+                      *ngIf="createMovieForm.get('image').errors.required"
+                      class="error"
+                      >Movie image is required</span
+                    >
+
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Actor Name <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="actor"
+                    name="actor"
+                    placeholder="Actor Name"
+                  />
+                  <span
+                    *ngIf="
+                    createMovieForm.get('actor').errors &&
+                      (createMovieForm.get('actor').touched ||
+                      createMovieForm.get('actor').dirty)
+                    "
+                  >
+                    <span
+                      *ngIf="createMovieForm.get('actor').errors.required"
+                      class="error"
+                      >Actor Name is required</span
+                    >
+                    <span
+                      *ngIf="createMovieForm.get('actor').errors.pattern"
+                      class="error"
+                      >only alphabets are allowed</span
+                    >
+                    
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Genre <span class="required">*</span></label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="genre"
+                    name="genre"
+                    placeholder="genre"
+                  />
+                  <span
+                    *ngIf="
+                    createMovieForm.get('genre').errors &&
+                      (createMovieForm.get('genre').touched ||
+                      createMovieForm.get('genre').dirty)
+                    "
+                  >
+                    <span
+                      *ngIf="createMovieForm.get('genre').errors.required"
+                      class="error"
+                      >genre is required</span
+                    >
+                    <span
+                      *ngIf="createMovieForm.get('genre').errors.pattern"
+                      class="error"
+                      >only alphabets are allowed</span
+                    >
+                    
+                  </span>
+                </div>
+              </div>
+           
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Release Year <span class="required">*</span></label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="releaseYear"
+                    name="releaseYear"
+                    placeholder="2020"
+                  />
+                  <span
+                    *ngIf="
+                    createMovieForm.get('releaseYear').errors &&
+                      (createMovieForm.get('releaseYear').touched ||
+                      createMovieForm.get('releaseYear').dirty)
+                    "
+                  >
+                    <span
+                      *ngIf="createMovieForm.get('releaseYear').errors.required"
+                      class="error"
+                      >Release Year is required</span
+                    >
+                    <span
+                      *ngIf="createMovieForm.get('releaseYear').errors.pattern"
+                      class="error"
+                      >Only numbers are required</span
+                    >
+                   
+                  </span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Id <span class="required">*</span></label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="id"
+                    name="id"
+                    placeholder="id"
+                  />
+                  <span
+                    *ngIf="
+                    createMovieForm.get('id').errors &&
+                      (createMovieForm.get('id').touched ||
+                      createMovieForm.get('id').dirty)
+                    "
+                  >
+                    <span
+                      *ngIf="createMovieForm.get('id').errors.required"
+                      class="error"
+                      >Id is required</span
+                    >
+                    <span
+                      *ngIf="createMovieForm.get('id').errors.pattern"
+                      class="error"
+                      >Only numbers are required</span
+                    >
+                   
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="submit"
+           
+            [disabled]="!createMovieForm.valid"
+            [ngStyle]="{
+              opacity: !createMovieForm.valid ? '0.6' : '1'
+            }"
+            class="saveBtn"
+          >
+           submit
+          </button>
+         
+          
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+
+<button class="back" (click)=back()>    Back</button>
+
+
+<div class="movieAll" *ngFor="let movie of moviesAll">
+    
+    <div class="left">
+        <img [src]="movie.image"/>
+    </div>
+    <div class="right">
+    <ul> 
+    <li><span>Name :</span> {{movie.name}}</li>
+    <li><span>Actor :</span> {{movie.actor}}</li>
+    <li><span>Genre :</span> {{movie.genre}}</li>
+    <li><span>Release Year</span> {{movie.releaseYear}}</li>
+    <li class="butn"><a class="delete btn" (click)=moviedelete(movie)>Delete</a> 
+        <a class="delete btn" (click)=movieEdit(movie)>Edit</a>     
+    </li>
+</ul>
+    </div>
+</div>
+
