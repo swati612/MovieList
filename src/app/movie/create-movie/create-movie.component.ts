@@ -69,6 +69,7 @@ if(this.movieId){
   {
     if(this.createMovieForm.value.id==data[i].id){
        data[i].id=this.createMovieForm.value.id
+       data[i].actor=this.createMovieForm.value.actor
        data[i].genre=this.createMovieForm.value.genre
        data[i].name=this.createMovieForm.value.name
        data[i].releaseYear=this.createMovieForm.value.releaseYear
