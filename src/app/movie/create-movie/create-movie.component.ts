@@ -109,7 +109,7 @@ else{
       console.log(this.createMovieForm.value)
     }
     else{
-      this.createMovieForm.controls["image"].patchValue("https://m.media-amazon.com/images/M/MV5BMTE0YWFmOTMtYTU2ZS00ZTIxLWE3OTEtYTNiYzBkZjViZThiXkEyXkFqcGdeQXVyODMzMzQ4OTI@._V1_SY1000_CR0,0,675,1000_AL_.jpg")
+      this.createMovieForm.controls["image"].patchValue("https://upload.wikimedia.org/wikipedia/en/thumb/d/db/The_Movies_Coverart.jpg/220px-The_Movies_Coverart.jpg")
       
       
     }
