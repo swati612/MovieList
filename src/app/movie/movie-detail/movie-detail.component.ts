@@ -27,8 +27,11 @@ export class MovieDetailComponent implements OnInit {
     });
 
     //console.log(this.musicId)
-    this.moviesAll = this._service.getMovies()
-    this.moviesAllCopy = this._service.getMovies()
+    //this.moviesAll = this._service.getMovies()
+    //this.moviesAllCopy = this._service.getMovies()
+            this.moviesAll = JSON.parse(localStorage.getItem("movielocal")|| '{}');
+            this.moviesAllCopy = JSON.parse(localStorage.getItem("movielocal")|| '{}');
+
     console.log(this.moviesAll)
     console.log(this.moviesAllCopy)
     this.moviesAll =  this.moviesAllCopy.filter((item: any)=>{
@@ -45,7 +48,7 @@ export class MovieDetailComponent implements OnInit {
     console.log(movie)
     this.route.navigate(["create", movie.id]);
   }
-  moviedelete(movie:any){
-    console.log(movie)
-  }
+  // moviedelete(movie:any){
+  //   console.log(movie)
+  // }
 }

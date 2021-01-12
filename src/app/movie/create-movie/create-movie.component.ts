@@ -46,7 +46,7 @@ export class CreateMovieComponent implements OnInit {
         ],
       ],
       genre: ["", [Validators.required]],
-      image: ["", [Validators.required]],
+      image: ["", []],
       actor: ["", [Validators.required]],
       id: ["", [Validators.required, Validators.pattern("^[0-9]*$"),]],
       releaseYear: [
@@ -62,15 +62,41 @@ export class CreateMovieComponent implements OnInit {
     });
   }
   onSubmit(){
-    console.log(this.createMovieForm.value)
+if(this.movieId){
+  console.log(this.createMovieForm.value)
+  let data= JSON.parse(localStorage.getItem('movielocal')|| '{}')
+  for (let i in data)
+  {
+    if(this.createMovieForm.value.id==data[i].id){
+       data[i].id=this.createMovieForm.value.id
+       data[i].genre=this.createMovieForm.value.genre
+       data[i].name=this.createMovieForm.value.name
+       data[i].releaseYear=this.createMovieForm.value.releaseYear
+     }
   }
+  localStorage.setItem('movielocal', JSON.stringify(data));
+  alert("movie details updated")
+   this.route.navigate(["movie", this.movieId]);
+}
+else{
+  var storedNames = JSON.parse(localStorage.getItem("movielocal")|| '{}');
+  storedNames.push(this.createMovieForm.value)
+   console.log(storedNames)
+   localStorage.setItem("movielocal",JSON.stringify(storedNames));
+ alert("New movie added")
+     this.route.navigate(['movie'])
+   }
+}
+  
   back(){
     this.route.navigate(['movie'])
   }
   patchavalue() {
     if (this.movieId) {
-      this.moviesAll = this._service.getMovies()
-      this.moviesAllCopy = this._service.getMovies()
+      //this.moviesAll = this._service.getMovies()
+      //this.moviesAllCopy = this._service.getMovies()
+      this.moviesAll = JSON.parse(localStorage.getItem("movielocal")|| '{}');
+      this.moviesAllCopy = JSON.parse(localStorage.getItem("movielocal")|| '{}');
       console.log(this.moviesAll)
       console.log(this.moviesAllCopy)
       this.moviesAll =  this.moviesAllCopy.filter((item: any)=>{
@@ -80,6 +106,11 @@ export class CreateMovieComponent implements OnInit {
       console.log(...this.moviesAll)
       this.createMovieForm.patchValue(...this.moviesAll)
       console.log(this.createMovieForm.value)
+    }
+    else{
+      this.createMovieForm.controls["image"].patchValue("https://m.media-amazon.com/images/M/MV5BMTE0YWFmOTMtYTU2ZS00ZTIxLWE3OTEtYTNiYzBkZjViZThiXkEyXkFqcGdeQXVyODMzMzQ4OTI@._V1_SY1000_CR0,0,675,1000_AL_.jpg")
+      
+      
     }
   }
 

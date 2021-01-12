@@ -46,7 +46,7 @@
                   </span>
                 </div>
               </div>
-              <div class="col-6">
+              <!-- <div class="col-6">
                 <div class="form-group">
                   <label>Movie Image <span class="required">*</span></label>
                   <input
@@ -72,7 +72,7 @@
 
                   </span>
                 </div>
-              </div>
+              </div> -->
               <div class="col-6">
                 <div class="form-group">
                   <label>Actor Name <span class="required">*</span></label>
@@ -176,6 +176,7 @@
                     formControlName="id"
                     name="id"
                     placeholder="id"
+                    [readonly]="movieId"
                   />
                   <span
                     *ngIf="
@@ -202,7 +203,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button
+          <button *ngIf="!movieId"
             type="submit"
            
             [disabled]="!createMovieForm.valid"
@@ -214,7 +215,17 @@
            submit
           </button>
          
-          
+          <button
+          type="submit"
+         *ngIf="movieId"
+          [disabled]="!createMovieForm.valid"
+          [ngStyle]="{
+            opacity: !createMovieForm.valid ? '0.6' : '1'
+          }"
+          class="saveBtn"
+        >
+         Update
+        </button>
         </div>
       </form>
     </div>

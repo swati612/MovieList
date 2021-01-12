@@ -3,7 +3,7 @@
 
 
 <div class="movie">
-<ul *ngFor="let movie of movies" >
+<ul *ngFor="let movie of movie1 ;index as i" >
     <li  (click)=moviedetail(movie)>
       <a > 
         <img [src]="movie.image"/>
@@ -12,7 +12,7 @@
       
     </li>
     <h3>{{movie.name}}</h3>
-    <li><a class="cart btn" (click)=moviedelete(movie)>Delete</a>
+    <li><a class="cart btn" (click)=moviedelete(i)>Delete</a>
         <a  class="buynow btn" (click)=moviedetail(movie)>Details</a>
     </li>
     

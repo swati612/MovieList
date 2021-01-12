@@ -10,17 +10,26 @@ import { ServiceService } from '../service.services';
 export class MovieComponent implements OnInit {
 
   movies:any=[]
+  movie1: any;
   constructor(  private route: Router,
      private _service: ServiceService) { }
 
   ngOnInit(): void {
     console.log("hello")
-        this.movies = this._service.getMovies()
-        console.log("abc")
-        //localStorage.setItem("movie","abc")
-        localStorage.setItem("movielocal",JSON.stringify(this.movies));
-        
 
+        this.movies = this._service.getMovies()
+        let arMoviesData=localStorage.getItem("movielocal");
+       //console.log(arMoviesData)
+        if(arMoviesData== null || arMoviesData==""){
+            localStorage.setItem("movielocal",JSON.stringify(this.movies)); 
+         this.movie1 = JSON.parse(localStorage.getItem("movielocal")|| '{}');
+         console.log("service")
+        }else{
+          console.log("local")
+          this.movie1 = JSON.parse(localStorage.getItem("movielocal")|| '{}');
+        }
+        
+       
   }
   
   moviedetail(movie: any){
@@ -29,10 +38,17 @@ export class MovieComponent implements OnInit {
    console.log(movie)
   }
   moviedelete(movie: any){
-   console.log(movie.id)
+   console.log(movie)
    console.log(movie)
    var storedNames = JSON.parse(localStorage.getItem("movielocal")|| '{}');
    console.log(storedNames)
+   if(confirm('do yo want to delte this?'))
+   {
+     storedNames.splice(movie,1);
+     localStorage.setItem('movielocal', JSON.stringify(storedNames));
+     console.log(storedNames)
+     this.ngOnInit()
+}
    
   }
   addMovie(){
